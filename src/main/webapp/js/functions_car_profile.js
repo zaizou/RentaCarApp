@@ -48,23 +48,6 @@ $(document).ready(function () {
             if( resultsTable.length == 0)
                 $("button#modal-rend-btn").css('display','none');
 
-
-            /*
-            for (var i = 0; i < result.structureList.length; i++) {
-                console.log("Section " + i);
-                console.log("Code Strcuture " + result.structureList[i].codeStructure);
-                console.log("Designation" + result.structureList[i].nom);
-                htln += '<option value=';
-                htln += "" + result.structureList[i].codeStructure;
-                htln += '>';
-                htln += "" + result.structureList[i].nom;
-                htln += '</option>';
-            }
-            $("#structure-select-section")
-                .html(htln)
-                .selectpicker('refresh');
-            */
-
         }).done(function () {
             console.log("apres success");
         }).fail(function () {
@@ -79,10 +62,21 @@ $(document).ready(function () {
     get_all_car_rents();
 
 
-
+    // Rent Reserve Btn click handling
     $("#modal-rent-btn").click(function() {
         $('#rentModal').modal('show')
     });
+    init_payment_card();
+    //Buy Btn Click handling
+    $("#modal-buy-btn").click(function() {
+        $('#buyModal').modal('show')
+
+        //createPaiement();
+    });
+
+
+
+
     $("#modal-rend-btn").click(function() {
 
         if( resultsTable.length > 0 )
@@ -229,76 +223,54 @@ $(document).ready(function () {
     }
 
 
-
-    function afficherCreateChapitreMessage() {
-
-        /* var code_rubr = $('#creat_input_codechap ').val();
-         var designation_rubr = $('#creat_input_designation').val();
-         var code_rubr=$('#chapitre-select-section').val();*/
-        var in_nom = $("#creat_input_nom").val();
-        var in_prenom = $("#creat_input_prenom").val();
-        var in_passw = $("#creat_input_passw").val();
-        var in_reppss = $("#creat_input_reppasswd").val();
-        var in_mail = $("#creat_input_email").val();
-        var in_tel = $("#creat_input_telephone").val();
-        var in_adr = $("#creat_input_addresse").val();
-        var in_id_user = $("#creat_input_id_user").val();
-        var in_struct = $("#structure-select-section").val();
-        var in_actif = $("#state-select").val();
-
-
-        var items = new Array();
-        $('#fonctionnlaite-select :selected').each(function (i, selected) {
-            console.log("parsing the element " + i);
-            console.log("selected val : " + $(selected).val());
-            items[i] = $(selected).val();
-            console.log("Items " + items[i]);
-        });
-
-
-        swal({
-            title: "Etes Vous Sure ?",
-            text: "Voulez vous vraiment Ajouter cette Rubrique ?",
-            type: "info",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            confirmButtonText: "Confirmer",
-            confirmButtonClass: "btn  btn-success waves-effect",
-        }, function () {
+    function createPaiement(){
             $.ajax(
                 {
                     type: "POST",
-                    url: "gestion_utilisateurs_utilisateur_create.html",
+                    url: "management_purchase_create.html",
                     data: {
-                        nom: in_nom,
-                        prenom: in_prenom,
-                        passwd: in_passw,
-                        reppassw: in_reppss,
-                        mail: in_mail,
-                        addresse: in_adr,
-                        id_utilisateur: in_id_user,
-                        code_structure: in_struct,
-                        fonctionnalites: items,
-                        actif: in_actif
+                        user_id:current_user_id,
+                        car_id:current_car_id,
+                        purchase_price: car_sell_price,
+                        purchase_date: moment().format("x")
                     }
                 }
             )
                 .done(function (data) {
-                    if (JSON.parse(data) == "100") {
-                        swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
-                        window.location.replace("gestion_utilisateurs_utilisateurs.html");
+                    if (JSON.parse(data) == "100"){
+                        swal("Succès!", "Véhicule Acheté", "success");
+                        location.reload();
                     }
-                    else if (JSON.parse(data) == "602")
-                        swal("Erreur", "l'utilisateur Existe deja verifier votre Id Utilisateur", "error");
-                    else if (JSON.parse(data) == "603")
-                        swal("Erreur", "Le Champ Repeter Mot de passe ne Correspond pas au Mot de passe ", "error");
+                    else if(JSON.parse(data) == "101") swal("Erreur", "Location non valable", "error");
+                    else swal("Erreur", ""+ data, "error");
                 })
                 .error(function (data) {
-                    swal("Erreur", "L'Utilisateur n'est pas ajouté", "error");
+                    swal("Erreur", "Achat non effectué", "error");
                 });
-        });
     }
 
+
+
+
+    function init_payment_card(){
+        //$("form.myForm").
+        var card = new Card({
+            form: 'form',
+            container: '.card-wrapper',
+            formSelectors: {
+                nameInput: 'input#payment_prenom' // optional - defaults input[name="name"]
+            },
+            messages: {
+                validDate: 'expire\ndate',
+                monthYear: 'mm/yy'
+            },placeholders: {
+                number: '**** **** **** ****',
+                name: 'Flen',
+                expiry: '**/****',
+                cvc: '***'
+            }
+        });
+    }
 
 
 

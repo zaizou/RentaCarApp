@@ -1,5 +1,6 @@
 package com.upem.rentacar.controller.vitrine;
 
+import com.upem.rentacar.model.gestion_vehicules.Car;
 import com.upem.rentacar.model.gestion_vehicules.Purchase;
 import com.upem.rentacar.service.cars_management.CarsService;
 import com.upem.rentacar.service.cars_management.PurchaseService;
@@ -34,12 +35,17 @@ public class PurchasesController {
 
         try {
             Purchase purchase = new Purchase();
-            purchase.setCar_id(carsService.getCarById(car_id));
+            Car car = carsService.getCarById(car_id);
+            purchase.setCar_id(car);
             purchase.setUser_id(utilisateursService.getUtilisateurByIdUtilisateur(user_id).get(0));
             purchase.setPurchase_price(purchase_price);
             purchase.setPurchase_date(new Date(purchase_date));
-            if(purchaseService.createPurchase(purchase) !=null)
+            if(purchaseService.createPurchase(purchase) !=null){
+                car.setSold(true);
+                carsService.createCar(car);
                 return "100";
+            }
+
             else return  "101";
 
 

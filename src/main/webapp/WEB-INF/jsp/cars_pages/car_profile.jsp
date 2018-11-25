@@ -110,7 +110,7 @@
                                     -->
                                     
                                     
-                                        <button class="btn btn-default btn-block waves-effect">Acheter</button>
+                                        <button id="modal-buy-btn" class="btn btn-default btn-block waves-effect">Acheter</button>
                                     
                                     
                                 
@@ -309,6 +309,45 @@
 </div>
 
 
+<div class="modal fade" id="buyModal"  tabindex="1" role="dialog" aria-hidden="true">
+    <div  class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Période de la location</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class='card-wrapper'></div>
+                    <form>
+                        <div class="card-body">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm" name="number" placeholder="Numéro de la carte">
+                            </div>
+                            <div class="fg-line">
+                                <input id="payment_prenom" type="text" class="form-control input-sm"  name="first-name" placeholder="Nom complet">
+                            </div>
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm" name="expiry" placeholder="Date d'expiration">
+                            </div>
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm"  name="cvc" placeholder="CVC">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="buyConfirm" class="btn btn-primary waves-effect ">Louer</button>
+                <button type="button" class="btn btn-link" data-dismiss="modal">Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -321,6 +360,8 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
 <script src="js/popper.min.js"></script>
+<script src="js/jquery.card.js"></script>
+<script src="js/card.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
 <script type="text/javascript" src="js/functions_car_profile.js"></script>
 
