@@ -136,6 +136,14 @@ $(document).ready(function () {
         createRent();
     });
 
+    $("button#paiementConfirm").click(function () {
+            startPaymentProcedure();
+    });
+
+    function startPaymentProcedure(){
+
+    }
+
 
     function check_valid_interval(date_from, date_to){
             var diffe_inf_from = 0;
@@ -221,6 +229,9 @@ $(document).ready(function () {
             swal("Erreur", "Intervall non autorisé", "error");
         }
     }
+
+
+
 
 
     function createPaiement(){

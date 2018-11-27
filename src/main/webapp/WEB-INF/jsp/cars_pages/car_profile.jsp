@@ -337,7 +337,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="buyConfirm" class="btn btn-primary waves-effect ">Louer</button>
+                <button type="button" id="paiementConfirm" class="btn btn-primary waves-effect ">Louer</button>
                 <button type="button" class="btn btn-link" data-dismiss="modal">Annuler
                 </button>
             </div>
