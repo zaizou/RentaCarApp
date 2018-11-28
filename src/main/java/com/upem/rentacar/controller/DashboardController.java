@@ -26,7 +26,7 @@ public class DashboardController {
 
     @RequestMapping(value = {"management_gestion_dashboard.html"}, method = RequestMethod.GET)
     public String getUserDashboard(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getPrincipal().toString();
         //pageContext.request.userPrincipal.getName()
         System.out.println("the name of :::");
