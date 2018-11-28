@@ -8,6 +8,9 @@ import java.util.List;
 public interface CarsService {
 
     public List<Car> getAllCars();
+    public List<Car> getAllCarsNotSold();
+    public List<Car> getAllCarsForSaleNotSold();
+
     public Car createCar(Car car);
     public Car deleteCar(Car car);
     public Car deleteCarById(Long id);
@@ -16,3 +19,4 @@ public interface CarsService {
     public List<Car> getCarByModel(String model);
 
 }
+

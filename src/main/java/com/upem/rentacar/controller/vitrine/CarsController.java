@@ -25,7 +25,29 @@ public class CarsController {
 
     @RequestMapping(value = {"management_cars"}, method = RequestMethod.GET)
     public String getCarsCatalog(Model model){
+        List<Car> cars = carsService.getAllCars();
+        if(cars == null)
+            cars = new ArrayList<Car>();
+        model.addAttribute("listCars",cars);
         return "cars_management";
+    }
+
+    @RequestMapping(value = {"management_vehicules_list_employee"}, method = RequestMethod.GET)
+    public String getCarsEmployeeList(Model model){
+        List<Car> cars = carsService.getAllCarsNotSold();
+        if(cars == null)
+            cars = new ArrayList<Car>();
+        model.addAttribute("listCars",cars);
+        return "cars_list_client_view";
+    }
+
+    @RequestMapping(value = {"management_vehicules_list_client"}, method = RequestMethod.GET)
+    public String getCarsClientsList(Model model){
+        List<Car> cars = carsService.getAllCarsForSaleNotSold();
+        if(cars == null)
+            cars = new ArrayList<Car>();
+        model.addAttribute("listCars",cars);
+        return "cars_list_client_view";
     }
 
     @RequestMapping(value = {"management_get_all_cars_list.json"} , method = RequestMethod.GET)

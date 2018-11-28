@@ -3,6 +3,7 @@ package com.upem.rentacar.model.gestion_utilisateurs;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.upem.rentacar.model.gestion_vehicules.Rent;
+import com.upem.rentacar.model.somebank.BankCurrency;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,12 +77,19 @@ public class Utilisateur {
 		this.id = id;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "currency_id")
+	@JsonManagedReference
+	private BankCurrency currency_id;
 
 
+	public BankCurrency getCurrency_id() {
+		return currency_id;
+	}
 
-
-
-
+	public void setCurrency_id(BankCurrency currency_id) {
+		this.currency_id = currency_id;
+	}
 
 	public String getId() {
 		return this.id;

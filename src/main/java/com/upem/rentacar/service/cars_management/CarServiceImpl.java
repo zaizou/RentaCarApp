@@ -20,6 +20,16 @@ public class CarServiceImpl implements CarsService {
     }
 
 
+    public List<Car> getAllCarsNotSold() {
+        return carRepository.getCarNotSold();
+    }
+
+
+    public List<Car> getAllCarsForSaleNotSold() {
+        return carRepository.getCarForSellNotSold();
+    }
+
+
     public Car createCar(Car car) {
         return carRepository.save(car);
     }

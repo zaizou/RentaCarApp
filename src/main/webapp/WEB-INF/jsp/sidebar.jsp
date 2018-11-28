@@ -24,6 +24,17 @@
 
                     <li > <a href="management_gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
 
+                    <sec:authorize access="hasAnyAuthority('ROLE_RENT')">
+                        <li > <a href="management_vehicules_list_employee.html"><i class="zmdi zmdi-home"></i> Liste des véhicules</a></li>
+                    </sec:authorize>
+
+                    <sec:authorize access="!hasAnyAuthority('ROLE_RENT') && !hasAnyAuthority('ROLE_ADMIN') ">
+                        <li > <a href="management_vehicules_list_client.html"><i class="zmdi zmdi-home"></i> Liste des véhicules</a></li>
+                    </sec:authorize>
+
+
+
+
 
                     <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 
