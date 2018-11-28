@@ -88,26 +88,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="clickable-row" data-href='www.google.com'>
+                                <c:if test="${rents.size() >0}">
+                                <c:forEach begin="0" end="${rents.size() - 1}" varStatus="loop">
+                                    <tr class="clickable-row">
                                         <td class="text-center">1</td>
-                                        <td>Mercedes Benz</td>
-                                        <td>25/11/2018</td>
-                                        <td>12/12/2018</td>
-                                        
+                                        <td>${rents.get(loop.index).car_id.brand} ${rents.get(loop.index).car_id.model}</td>
+                                        <td>${rents.get(loop.index).date_from}</td>
+                                        <td>${rents.get(loop.index).date_to}</td>
+
                                         <td >
                                             <ul class="actions text-center">
-                                            <li>
-                                        <a href="">
-                                            <i class="zmdi zmdi-arrow-left"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                                                <li>
+                                                    <a href="">
+                                                        <i class="zmdi zmdi-arrow-left" id="${rents.get(loop.index).id}"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
 
 
                                         </td>
                                     </tr>
-                                
-
+                                </c:forEach>
+                                </c:if>
                                 </tbody>
 
 

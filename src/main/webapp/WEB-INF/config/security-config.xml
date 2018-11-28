@@ -24,12 +24,13 @@
 		<intercept-url pattern="/private*" access="permitAll" />
 
 
+		<!--
 		<intercept-url pattern="/management_*.html" access="permitAll" />
+-->
 
 
-	<!--
     <intercept-url pattern="/management_*.html" access="hasAuthority('ROLE_USER')" />
-	 -->
+
 
     <form-login login-page="/login.html"
                 authentication-failure-url="/loginFailed.html"

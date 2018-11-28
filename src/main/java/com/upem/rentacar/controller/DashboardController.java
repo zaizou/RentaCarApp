@@ -27,11 +27,12 @@ public class DashboardController {
     @RequestMapping(value = {"management_gestion_dashboard.html"}, method = RequestMethod.GET)
     public String getUserDashboard(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getPrincipal().toString();
+        String currentPrincipalName =  authentication.getName();//authentication.getPrincipal().toString();
         //pageContext.request.userPrincipal.getName()
         System.out.println("the name of :::");
         System.out.println(currentPrincipalName);
-        //List<Rent> rents = rentService.getRentsByUserIdNotFinishedOrderByDate();
+        List<Rent> rents = rentService.getRentsByUserIdNotFinishedOrderByDate(currentPrincipalName);
+        model.addAttribute("rents",rents);
         return "dashboard";
     }
 }
