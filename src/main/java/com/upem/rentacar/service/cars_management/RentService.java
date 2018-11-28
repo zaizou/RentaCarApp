@@ -16,6 +16,7 @@ public interface RentService {
     public List<Rent> getRentsByCarIdNotFinishedOrderByDate(Long car_id);
     public List<Rent> getRentsByCarIdUserIdNotFinishedOrderByDate(Long car_id, Long user_id);
     public List<Rent> createRents(List<Rent> rents);
+    public List<Rent> getRentsByUserIdNotFinishedOrderByDate(Long user_id);
 
 
 

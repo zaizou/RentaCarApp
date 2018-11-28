@@ -23,6 +23,9 @@ public interface RentRepository extends JpaRepository<Rent,Long> {
     @Query("SELECT r FROM Rent r WHERE r.car_id.id = (:car_id) AND NOT r.finished= true   ORDER BY r.date_from asc")
     public List<Rent> getRentsByCarIdNotFinishedOrderByDate(@Param("car_id") Long car_id);
 
+    @Query("SELECT r FROM Rent r WHERE r.user_id.id = (:user_id) AND NOT r.finished= true   ORDER BY r.date_from desc")
+    public List<Rent> getRentsByUserIdNotFinishedOrderByDate(@Param("user_id") Long user_id);
+
     @Query("SELECT r FROM Rent r WHERE r.car_id.id = (:car_id) AND r.user_id.id = (:user_id) AND NOT r.finished= true   ORDER BY r.date_from asc")
     public List<Rent> getRentsByCarIdUserIdNotFinishedOrderByDate(@Param("car_id") Long car_id,@Param("user_id") Long user_id);
 

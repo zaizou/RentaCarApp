@@ -69,4 +69,9 @@ public class RentServiceImpl  implements RentService{
         return rentRepository.save(rents);
     }
 
+    @Override
+    public List<Rent> getRentsByUserIdNotFinishedOrderByDate(Long user_id) {
+        return rentRepository.getRentsByUserIdNotFinishedOrderByDate(user_id);
+    }
+
 }

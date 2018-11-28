@@ -69,52 +69,6 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6" >
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Catalogue</h2>
-
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Intitulé</th>
-                                        <th>location</th>
-                                        <th>Vente</th>
-                                        <th>Evaluation</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                <c:if test="${carsList.size()>0}">
-                                <c:forEach begin="0" end="${carsList.size()-1}" varStatus="loop">
-                                         <tr class="clickable-row"  data-href='management_get_car_web.html?car_id=${carsList.get(loop.index).id}' >
-                                            <td><img src="img/mer.jpg" height="70px" width="100px" /></td>
-                                            <td>${carsList.get(loop.index).brand}  ${carsList.get(loop.index).model}</td>
-                                            <td>${carsList.get(loop.index).rent_price} $</td>
-                                            <td>${carsList.get(loop.index).sell_price} $</td>
-                                            <td>
-                                                <div class="rl-star">
-                                                    <i class="zmdi zmdi-star active"></i>
-                                                    <i class="zmdi zmdi-star active"></i>
-                                                    <i class="zmdi zmdi-star active"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:if>
-                                </tbody>
-
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-md-6">
                     <div class="card">
@@ -160,7 +114,9 @@
                             </table>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
                             <h2>Réservations</h2>
@@ -169,37 +125,37 @@
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Intitulé</th>
-                                        <th>Début</th>
-                                        <th>Fin</th>
-                                        <th>Ordre</th>
-                                        <th>Actions</th>
-                                    </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Intitulé</th>
+                                    <th>Début</th>
+                                    <th>Fin</th>
+                                    <th>Ordre</th>
+                                    <th>Actions</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="clickable-row" data-href='www.google.com'>
-                                        <td class="text-center">1</td>
-                                        <td>Mercedes Benz</td>
-                                        <td>25/11/2018</td>
-                                        <td>12/12/2018</td>
-                                        <td class="text-center">
-                                            10
-                                        </td>
-                                        <td >
-                                            <ul class="actions text-center">
+                                <tr class="clickable-row" data-href='www.google.com'>
+                                    <td class="text-center">1</td>
+                                    <td>Mercedes Benz</td>
+                                    <td>25/11/2018</td>
+                                    <td>12/12/2018</td>
+                                    <td class="text-center">
+                                        10
+                                    </td>
+                                    <td >
+                                        <ul class="actions text-center">
                                             <li>
-                                        <a href="">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                                                <a href="">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
 
 
-                                        </td>
-                                    </tr>
-                                
+                                    </td>
+                                </tr>
+
 
                                 </tbody>
 
@@ -207,39 +163,41 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Achats</h2>
-                        </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Achats</h2>
+                    </div>
 
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Intitulé</th>
-                                        <th>Date</th>
-                                        <th class="text-center">Prix d'achat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="clickable-row" data-href='www.google.com'>
-                                        <td class="text-center">1</td>
-                                        <td>Mercedes Benz</td>
-                                        <td>12/12/2018</td>
-                                        <td class="text-center">
-                                            10
-                                        </td>
-                   
-                                    </tr>
-                                
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Intitulé</th>
+                                <th>Date</th>
+                                <th class="text-center">Prix d'achat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="clickable-row" data-href='www.google.com'>
+                                <td class="text-center">1</td>
+                                <td>Mercedes Benz</td>
+                                <td>12/12/2018</td>
+                                <td class="text-center">
+                                    10
+                                </td>
 
-                                </tbody>
+                            </tr>
 
 
-                            </table>
-                        </div>
+                            </tbody>
+
+
+                        </table>
                     </div>
                 </div>
             </div>

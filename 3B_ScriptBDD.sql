@@ -3,14 +3,14 @@ CREATE DATABASE tbibase WITH OWNER = three_b_internationnal;
 
 \c nextvrbase ;
 
-CREATE SCHEMA IF NOT EXISTS tbi_schema AUTHORIZATION three_b_internationnal;
-ALTER ROLE three_b_internationnal SET search_path TO tbi_schema,public;
+CREATE SCHEMA IF NOT EXISTS public AUTHORIZATION three_b_internationnal;
+ALTER ROLE three_b_internationnal SET search_path TO public,public;
 GRANT ALL PRIVILEGES ON DATABASE nextvrbase to three_b_internationnal;
-ALTER DEFAULT PRIVILEGES IN SCHEMA tbi_schema GRANT ALL ON TABLES TO three_b_internationnal;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO three_b_internationnal;
 
 \c nextvrbase three_b_internationnal;
 
-CREATE TABLE tbi_schema.persistent_logins (
+CREATE TABLE public.persistent_logins (
     username varchar(64) not null,
     series varchar(64) not null,
     token varchar(64) not null,
@@ -18,23 +18,23 @@ CREATE TABLE tbi_schema.persistent_logins (
     CONSTRAINT PK_persistent_logins PRIMARY KEY (series)
 );
 
-ALTER TABLE tbi_schema.persistent_logins
+ALTER TABLE public.persistent_logins
   OWNER TO three_b_internationnal;
 
 
-CREATE TABLE tbi_schema.fonctionnalite
+CREATE TABLE public.fonctionnalite
 (
   designation character varying(255) NOT NULL,
   idfonctionnalite serial NOT NULL,
   CONSTRAINT fonctionnalite_pkey PRIMARY KEY (designation)
 );
 
-ALTER TABLE tbi_schema.fonctionnalite
+ALTER TABLE public.fonctionnalite
   OWNER TO three_b_internationnal;
 
 
 
-CREATE TABLE tbi_schema.utilisateur
+CREATE TABLE public.utilisateur
 (
   id_utilisateur character varying(255) NOT NULL,
   actif integer,
@@ -52,22 +52,22 @@ CREATE TABLE tbi_schema.utilisateur
   
 );
 
-ALTER TABLE tbi_schema.utilisateur
+ALTER TABLE public.utilisateur
   OWNER TO three_b_internationnal;
 
 
 
-CREATE TABLE tbi_schema.autorite
+CREATE TABLE public.autorite
 (
   id_utilisateur character varying(255) NOT NULL,
   designation character varying(255) NOT NULL,
   CONSTRAINT autorite_pkey PRIMARY KEY (id_utilisateur, designation)
 );
 
-ALTER TABLE tbi_schema.autorite
+ALTER TABLE public.autorite
   OWNER TO three_b_internationnal;
 
-CREATE TABLE tbi_schema.wilaya
+CREATE TABLE public.wilaya
 (
   matriculewilaya integer NOT NULL,
   intitulewilaya character varying(255),
@@ -76,32 +76,32 @@ CREATE TABLE tbi_schema.wilaya
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE tbi_schema.wilaya
+ALTER TABLE public.wilaya
   OWNER TO three_b_internationnal;
 
 
 
 -- ajout des utilisateurs
-INSERT INTO tbi_schema.UTILISATEUR (ID_UTILISATEUR, PASSWD, ACTIF) VALUES ('admin','$2a$10$4bct.A1X43nncnTW52jMVuxrLtGPyhT0Qn.xxaH.JISlWKjjD6M7i',1);
+INSERT INTO public.UTILISATEUR (ID_UTILISATEUR, PASSWD, ACTIF) VALUES ('admin','$2a$10$4bct.A1X43nncnTW52jMVuxrLtGPyhT0Qn.xxaH.JISlWKjjD6M7i',1);
 --yazid -> admin
-INSERT INTO tbi_schema.UTILISATEUR (ID_UTILISATEUR, PASSWD, ACTIF) VALUES ('yazid','$2a$04$VKBy8HGI5uPzySsJoBHgHuOP1F5Dx9j/ieAV/g703VXKdTS2PzmDO',1);
+INSERT INTO public.UTILISATEUR (ID_UTILISATEUR, PASSWD, ACTIF) VALUES ('yazid','$2a$04$VKBy8HGI5uPzySsJoBHgHuOP1F5Dx9j/ieAV/g703VXKdTS2PzmDO',1);
 
-INSERT INTO tbi_schema.UTILISATEUR (ID_UTILISATEUR, PASSWD, ACTIF) VALUES ('USER','$2a$10$4bct.A1X43nncnTW52jMVuxrLtGPyhT0Qn.xxaH.JISlWKjjD6M7i',1);
+INSERT INTO public.UTILISATEUR (ID_UTILISATEUR, PASSWD, ACTIF) VALUES ('USER','$2a$10$4bct.A1X43nncnTW52jMVuxrLtGPyhT0Qn.xxaH.JISlWKjjD6M7i',1);
 
 -- roles et fonctionnalites generaux
 
-insert into tbi_schema.FONCTIONNALITE (DESIGNATION) values ('ROLE_USER');
-insert into tbi_schema.FONCTIONNALITE (DESIGNATION) values ('ROLE_ADMIN');
-insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('admin', 'ROLE_USER');
-insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('admin', 'ROLE_ADMIN');
-insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_USER');
-insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_ADMIN');
-insert into tbi_schema.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('USER', 'ROLE_USER');
+insert into public.FONCTIONNALITE (DESIGNATION) values ('ROLE_USER');
+insert into public.FONCTIONNALITE (DESIGNATION) values ('ROLE_ADMIN');
+insert into public.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('admin', 'ROLE_USER');
+insert into public.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('admin', 'ROLE_ADMIN');
+insert into public.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_USER');
+insert into public.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('yazid', 'ROLE_ADMIN');
+insert into public.AUTORITE (ID_UTILISATEUR, DESIGNATION) values ('USER', 'ROLE_USER');
 
 
 
 
-INSERT INTO tbi_schema.wilaya (matriculewilaya, intitulewilaya) VALUES
+INSERT INTO public.wilaya (matriculewilaya, intitulewilaya) VALUES
 (1,  'Adrar'),
 (2,  'Chlef'),
 (3,  'Laghouat'),

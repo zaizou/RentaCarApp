@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.sql.Date;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -83,5 +84,16 @@ public class RentController {
 
 
     }
+
+
+    @RequestMapping(value = {"management_get_all_reservations_by_user_id.json"} , method = RequestMethod.GET)
+    public List<Rent> getAllCars(Model model, @RequestParam("user_id") Long user_id){
+            List<Rent> rents = rentService.getRentsByUserIdNotFinishedOrderByDate(user_id);
+            if(rents == null)
+                rents = new ArrayList<Rent>();
+            return rents;
+    }
+
+
 }
 
