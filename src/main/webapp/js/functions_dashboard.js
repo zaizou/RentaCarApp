@@ -12,6 +12,13 @@ var selected_car_id;
 
 $(document).ready(function () {
 
+    $(function() {
+        $('#example').barrating({
+            theme: 'fontawesome-stars'
+        });
+    });
+
+
 
         $(".rent_end").click(function(){
             //showFinishRent();
@@ -22,9 +29,14 @@ $(document).ready(function () {
             selectedRent = $(this).attr("id")
             console.log("ID is :");
             console.log(selectedRent);
-            showFinishRent();
+            //showSweet();
+            $('#evalModal').modal('show');
+
+            //showFinishRent();
 
         });
+
+        $("#renduConfirm").click(function(){});
 
         function showFinishRent(){
                     swal({
@@ -57,6 +69,10 @@ $(document).ready(function () {
                             });
                     });
         }
+
+
+
+
 
 
 

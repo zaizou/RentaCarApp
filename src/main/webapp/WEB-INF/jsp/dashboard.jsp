@@ -16,6 +16,14 @@
     <link href="css/app.min.1.css" rel="stylesheet">
     <link href="css/app.min.2.css" rel="stylesheet">
     <title></title>
+    <style>
+        .star-rating {
+            line-height:32px;
+            font-size:1.25em;
+        }
+
+        .star-rating .fa-star{color: yellow;}
+    </style>
 </head>
 <body>
 
@@ -219,12 +227,47 @@
 
 </section>
 
+
+<div class="modal fade" id="evalModal"  tabindex="1" role="dialog" aria-hidden="true">
+    <div  class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Evaluation/5</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <select id="example">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="renduConfirm" class="btn btn-primary waves-effect ">Valider</button>
+                <button type="button" class="btn btn-link" data-dismiss="modal">Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.barrating.min.js"></script>
+<script type="text/javascript">
+
+</script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-select.js"></script>
 
 <script type="text/javascript" src="js/waves.min.js"></script>
-<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
+
 <!--Bibliotheque pour le sidebar -->
 <script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/moment.min.js"></script>
