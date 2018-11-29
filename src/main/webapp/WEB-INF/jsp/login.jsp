@@ -30,7 +30,7 @@
 <!-- Login -->
 <form id="loginForm" action="login" method="post">
     <div class="lc-block toggled" id="l-login">
-        <img src="img/logo.png">
+        <img src="img/logo.png" width="300px" height="200px">
         <br/>
         <br/>
         <div class="input-group m-b-20">

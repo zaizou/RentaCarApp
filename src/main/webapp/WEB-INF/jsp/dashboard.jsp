@@ -30,6 +30,28 @@
 <c:import url="./header.jsp"></c:import>
 <!--Le sidebar/navigation drawer (android) -->
 <c:import url="./sidebar.jsp"></c:import>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+
+            var ratesTab;
+            $.ajax(
+                {
+                    type: "GET",
+                    url: "http://data.fixer.io/api/latest?access_key=e89947dd575d22268b627200651ecc1f&format=1"
+                }
+            )
+            .done(function (data) {
+               console.log(data);
+               console.log(data.rates["EUR"]);
+                rates = data;
+            })
+            .error(function (data) {
+                console.log("Error loading currencies");
+
+            });
+
+</script>
+
 
 <!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
 <header id="header" class="clearfix" data-current-skin="bluegray">
@@ -208,7 +230,17 @@
                                     <td>${purchases.get(loop.index).car_id.brand}  ${purchases.get(loop.index).car_id.model}</td>
                                     <td>${purchases.get(loop.index).purchase_date}</td>
                                     <td class="text-center">
-                                            ${purchases.get(loop.index).purchase_price}
+
+                                        <script>
+                                            var userCurrency = ${userCurrency.currency_name};
+                                            var valu = ${purchases.get(loop.index).purchase_price};
+                                            var ratesTab;
+                                            var res = valu * data.rates[""+userCurrency];
+                                            res;
+                                            userCurrency;
+                                            print(""+res+"  "+userCurrency+"   :"+valu);
+                                            $(this).closest("td").append(""+res+"  "+userCurrency+"   :"+valu);
+                                        </script>
 
                                     </td>
 
@@ -249,7 +281,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
+
 <script type="text/javascript" src="js/jquery.barrating.min.js"></script>
 <script type="text/javascript">
 
