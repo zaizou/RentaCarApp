@@ -1,6 +1,7 @@
 package com.upem.rentacar.controller.vitrine;
 
 
+import com.upem.rentacar.model.gestion_vehicules.Car;
 import com.upem.rentacar.model.gestion_vehicules.Rent;
 import com.upem.rentacar.service.cars_management.CarServiceImpl;
 import com.upem.rentacar.service.cars_management.CarsService;
@@ -69,19 +70,26 @@ public class RentController {
 
 
     @RequestMapping(value = {"management_cloture_rent"}, method = RequestMethod.POST)
-    @ResponseBody  public String cloture_rent(Model model, @RequestParam("id_rent") Long id_rent,@RequestParam("id_car") Long id_car){
+    @ResponseBody  public String cloture_rent(Model model, @RequestParam("id_rent") Long id_rent,@RequestParam("id_car") Long id_car,@RequestParam("evaluation") Long evaluation){
         try {
 
             Rent rent = rentService.getRentById(id_rent);
+            Car car = rent.getCar_id();
+            Double db = (car.getEvaluation()+ evaluation)/2;
+            db = new Double(db.intValue());
+            car.setEvaluation(db);
+            car.setFor_sell(true);
             rent.setFinished(true);
             if (rentService.createRent(rent) != null) {
+                if(evaluation<0)
+                    carsService.createCar(car);
                 List<Rent> rentList = rentService.getRentsByCarIdNotFinishedOrderByDate(id_car);
                 if (rentList != null) {
                     for (int i = 0; i < rentList.size(); i++)
                         rentList.get(i).setOrdre(i + 1);
                     rentService.createRents(rentList);
-
                 }
+                //evaluation
                 return "100";
             }else return "101";
 

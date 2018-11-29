@@ -12,8 +12,8 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
-    @Override
-    public List<Purchase> listUserPurchases(Long user_id) {
+
+    public List<Purchase> listUserPurchases(String user_id) {
         return purchaseRepository.getPurchasesByCarIdOrderByDate(user_id);
     }
 

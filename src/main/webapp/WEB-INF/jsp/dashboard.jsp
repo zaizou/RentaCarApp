@@ -151,17 +151,17 @@
                                     <c:forEach begin="0" end="${rents.size() - 1}" varStatus="loop">
                                         <c:if test="${rents.get(loop.index).ordre > 1}">
                                         <tr class="clickable-row">
-                                            <td class="text-center">${loop.index+1}</td>
-                                            <td class="tb-model">${rents.get(loop.index).car_id.brand} ${rents.get(loop.index).car_id.model}</td>
-                                            <td class="tb-date-from">${rents.get(loop.index).date_from}</td>
-                                            <td class="tb-date-to">${rents.get(loop.index).date_to}</td>
-                                            <td class="tb-date-to">${rents.get(loop.index).ordre}</td>
-                                            <td class="tb-car-id" style="display: none;">${rents.get(loop.index).car_id.id}</td>
+                                            <td class="text-center-res">${loop.index+1}</td>
+                                            <td class="tb-model-res">${rents.get(loop.index).car_id.brand} ${rents.get(loop.index).car_id.model}</td>
+                                            <td class="tb-date-from-res">${rents.get(loop.index).date_from}</td>
+                                            <td class="tb-date-to-res">${rents.get(loop.index).date_to}</td>
+                                            <td class="tb-date-ordre-res">${rents.get(loop.index).ordre}</td>
+                                            <td class="tb-car-id-res" style="display: none;">${rents.get(loop.index).car_id.id}</td>
 
                                             <td >
                                                 <ul class="actions text-center">
                                                     <li>
-                                                        <a class="rent_end" id="${rents.get(loop.index).id}">
+                                                        <a class="reservation_end"  data-action="${rents.get(loop.index).car_id.id}" id="${rents.get(loop.index).id}">
                                                             <i class="zmdi zmdi-arrow-left " ></i>
                                                         </a>
                                                     </li>
@@ -201,17 +201,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="clickable-row" data-href='www.google.com'>
-                                <td class="text-center">1</td>
-                                <td>Mercedes Benz</td>
-                                <td>12/12/2018</td>
-                                <td class="text-center">
-                                    10
-                                </td>
+                            <c:if test="${purchases.size() >0}">
+                            <c:forEach begin="0" end="${purchases.size() - 1}" varStatus="loop">
+                                <tr class="clickable-row">
+                                    <td class="text-center">${loop.index}</td>
+                                    <td>${purchases.get(loop.index).car_id.brand}  ${purchases.get(loop.index).car_id.model}</td>
+                                    <td>${purchases.get(loop.index).purchase_date}</td>
+                                    <td class="text-center">
+                                            ${purchases.get(loop.index).purchase_price}
 
-                            </tr>
+                                    </td>
 
-
+                                </tr>
+                            </c:forEach>
+                            </c:if>
                             </tbody>
 
 
@@ -235,18 +238,7 @@
                 <h4 class="modal-title">Evaluation/5</h4>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <select id="example">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-
-                </div>
-
-
+                <input type="number" id="rent_rating_value" max="5" min="0">
             </div>
             <div class="modal-footer">
                 <button type="button" id="renduConfirm" class="btn btn-primary waves-effect ">Valider</button>
@@ -266,7 +258,8 @@
 <script type="text/javascript" src="js/bootstrap-select.js"></script>
 
 <script type="text/javascript" src="js/waves.min.js"></script>
-<script type="text/javascript" src="js/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+
 
 <!--Bibliotheque pour le sidebar -->
 <script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>

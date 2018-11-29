@@ -2,8 +2,10 @@ package com.upem.rentacar.controller;
 
 
 import com.upem.rentacar.model.gestion_vehicules.Car;
+import com.upem.rentacar.model.gestion_vehicules.Purchase;
 import com.upem.rentacar.model.gestion_vehicules.Rent;
 import com.upem.rentacar.service.cars_management.CarsService;
+import com.upem.rentacar.service.cars_management.PurchaseService;
 import com.upem.rentacar.service.cars_management.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,6 +25,8 @@ public class DashboardController {
     private CarsService carsService;
     @Autowired
     private RentService rentService;
+    @Autowired
+    private PurchaseService purchaseService;
 
     @RequestMapping(value = {"management_gestion_dashboard.html"}, method = RequestMethod.GET)
     public String getUserDashboard(Model model){
@@ -33,6 +37,9 @@ public class DashboardController {
         System.out.println(currentPrincipalName);
         List<Rent> rents = rentService.getRentsByUserIdNotFinishedOrderByDate(currentPrincipalName);
         model.addAttribute("rents",rents);
+
+        List<Purchase> purchases =purchaseService.listUserPurchases(currentPrincipalName);
+        model.addAttribute("purchases",purchases);
         return "dashboard";
     }
 }
