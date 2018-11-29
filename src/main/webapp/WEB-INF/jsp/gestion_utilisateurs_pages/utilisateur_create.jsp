@@ -178,6 +178,13 @@
                                 </select>
                             </div>
 
+                            <div class="col-sm-4 m-b-20">
+                                <br/>
+                                <select class="selectpicker" title="Currency" id="currencies-select"
+                                        data-live-search="true" multiple>
+                                </select>
+                            </div>
+
                         </div>
 
 

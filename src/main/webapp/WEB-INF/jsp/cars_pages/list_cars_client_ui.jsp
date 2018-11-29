@@ -8,8 +8,7 @@
         </h2>
     </div>
     <div class="card-contenu">
-
-        <table id="data-table-command"      class="table table-condensed table-hover table-striped bootgrid-table" aria-busy="false">
+        <table id="data-table-command"    class="table table-condensed table-hover table-striped bootgrid-table" aria-busy="false">
             <!--l'entete du tableau' -->
             <thead>
             <tr>

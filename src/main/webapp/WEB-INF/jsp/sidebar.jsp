@@ -25,12 +25,14 @@
                     <li > <a href="management_gestion_dashboard.html"><i class="zmdi zmdi-home"></i> Tableau de Bord</a></li>
 
                     <sec:authorize access="hasAnyAuthority('ROLE_RENT')">
-                        <li > <a href="management_vehicules_list_employee.html"><i class="zmdi zmdi-home"></i> Liste des véhicules</a></li>
                     </sec:authorize>
+                        <li > <a href="management_vehicules_list_employee.html"><i class="zmdi zmdi-home"></i> Liste des véhicules</a></li>
+
 
                     <sec:authorize access="!hasAnyAuthority('ROLE_RENT') && !hasAnyAuthority('ROLE_ADMIN') ">
-                        <li > <a href="management_vehicules_list_client.html"><i class="zmdi zmdi-home"></i> Liste des véhicules</a></li>
                     </sec:authorize>
+                        <li > <a href="management_vehicules_list_client.html"><i class="zmdi zmdi-home"></i> Liste des véhicules</a></li>
+
 
 
 
@@ -54,15 +56,6 @@
 
                     <li ><a href="management_cars.html"><i class="zmdi zmdi-home"></i>Gestion des Voitures</a></li>
 
-
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-home"></i> Comptabilité</a>
-                        <ul>
-                            <li><a href="management_recettes_depenses_journalieres_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Recettes/Dépenses</a></li>
-                            <li><a href="management_transferts_journaliers_extraction_show.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> une Journée Transferts</a></li>
-                            <li><a href="comptabilite_extraction.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Introduire les Recettes Dépenses et Transferts (Intervalle)</a></li>
-                        </ul>
-                    </li>
 
                    <li><a href="logout"><i class="zmdi zmdi-time-restore"></i> Deconnexion</a></li>
 

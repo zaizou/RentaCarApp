@@ -2,6 +2,8 @@ package com.upem.rentacar.controller;
 
 import com.upem.rentacar.model.gestion_utilisateurs.Fonctionnalite;
 import com.upem.rentacar.model.gestion_utilisateurs.Utilisateur;
+import com.upem.rentacar.model.somebank.BankCurrency;
+import com.upem.rentacar.repository.somebank.BankCurrencyRepository;
 import com.upem.rentacar.repository.user_management.UtilisateurRepository;
 import com.upem.rentacar.service.users_management.GestionUtilisateursService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class GestionUtilisateurController {
     private GestionUtilisateursService gestionUtilisateursService;
     @Autowired
     UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private BankCurrencyRepository currencyRepository;
 
 
     @RequestMapping(
@@ -281,6 +285,20 @@ public class GestionUtilisateurController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(sequence);
         return hashedPassword;
+    }
+
+
+    //
+    //gestion_utilisateurs_currencies_list.json
+    @RequestMapping(
+            value = {"/gestion_utilisateurs_currencies_list.json"},
+            method = {RequestMethod.GET}
+    )
+    public List<BankCurrency> getCurrencies() {
+        List<BankCurrency> bankCurrencies = currencyRepository.findAll();
+        if(bankCurrencies ==null)
+            bankCurrencies = new ArrayList<BankCurrency>();
+        return bankCurrencies;
     }
 
 

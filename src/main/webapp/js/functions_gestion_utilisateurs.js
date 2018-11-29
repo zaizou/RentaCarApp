@@ -44,6 +44,39 @@ $(document).ready(function () {
             console.log("complete toujours succes ou erreur");
         });
 
+
+
+    //Initialisation
+    $.getJSON('gestion_utilisateurs_currencies_list.json', {
+        ajax: 'true'
+    }, function (result) {
+        var htln = "";
+        for (var i = 0; i < result.bankCurrencies.length; i++) {
+            console.log("Section " + i);
+            console.log("Code Strcuture " + result.bankCurrencies[i].id);
+            console.log("Designation" + result.bankCurrencies[i].currency_name);
+            htln += '<option value=';
+            htln += "" + result.bankCurrencies[i].id;
+            htln += '>';
+            htln += "" + result.bankCurrencies[i].currency_name;
+            htln += '</option>';
+        }
+        $("#fonctionnlaite-select")
+            .html(htln).selectpicker('refresh');
+
+    }).done(function () {
+        console.log("apres success");
+    })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete toujours succes ou erreur");
+        });
+
+
+
+
     //Initialisation
     $.getJSON('gestion_utilisateurs_fonctionnalites_list.json', {
         ajax: 'true'
