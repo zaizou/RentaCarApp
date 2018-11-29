@@ -90,17 +90,18 @@
                                 <tbody>
                                 <c:if test="${rents.size() >0}">
                                 <c:forEach begin="0" end="${rents.size() - 1}" varStatus="loop">
+                                    <c:if test="${rents.get(loop.index).ordre == 1}">
                                     <tr class="clickable-row">
-                                        <td class="text-center">1</td>
-                                        <td>${rents.get(loop.index).car_id.brand} ${rents.get(loop.index).car_id.model}</td>
-                                        <td>${rents.get(loop.index).date_from}</td>
-                                        <td>${rents.get(loop.index).date_to}</td>
+                                        <td class="text-center">${loop.index+1}</td>
+                                        <td class="tb-model">${rents.get(loop.index).car_id.brand} ${rents.get(loop.index).car_id.model}</td>
+                                        <td class="tb-date-from">${rents.get(loop.index).date_from}</td>
+                                        <td class="tb-date-to">${rents.get(loop.index).date_to}</td>
 
                                         <td >
                                             <ul class="actions text-center">
                                                 <li>
-                                                    <a href="">
-                                                        <i class="zmdi zmdi-arrow-left" id="${rents.get(loop.index).id}"></i>
+                                                    <a class="rent_end" id="${rents.get(loop.index).id}">
+                                                        <i class="zmdi zmdi-arrow-left " ></i>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -108,6 +109,7 @@
 
                                         </td>
                                     </tr>
+                                    </c:if>
                                 </c:forEach>
                                 </c:if>
                                 </tbody>
@@ -137,26 +139,32 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="clickable-row" data-href='www.google.com'>
-                                    <td class="text-center">1</td>
-                                    <td>Mercedes Benz</td>
-                                    <td>25/11/2018</td>
-                                    <td>12/12/2018</td>
-                                    <td class="text-center">
-                                        10
-                                    </td>
-                                    <td >
-                                        <ul class="actions text-center">
-                                            <li>
-                                                <a href="">
-                                                    <i class="zmdi zmdi-delete"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                <c:if test="${rents.size() >0}">
+                                    <c:forEach begin="0" end="${rents.size() - 1}" varStatus="loop">
+                                        <c:if test="${rents.get(loop.index).ordre > 1}">
+                                        <tr class="clickable-row">
+                                            <td class="text-center">${loop.index+1}</td>
+                                            <td class="tb-model">${rents.get(loop.index).car_id.brand} ${rents.get(loop.index).car_id.model}</td>
+                                            <td class="tb-date-from">${rents.get(loop.index).date_from}</td>
+                                            <td class="tb-date-to">${rents.get(loop.index).date_to}</td>
+                                            <td class="tb-date-to">${rents.get(loop.index).ordre}</td>
+                                            <td class="tb-car-id" style="display: none;">${rents.get(loop.index).car_id.id}</td>
+
+                                            <td >
+                                                <ul class="actions text-center">
+                                                    <li>
+                                                        <a class="rent_end" id="${rents.get(loop.index).id}">
+                                                            <i class="zmdi zmdi-arrow-left " ></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
 
 
-                                    </td>
-                                </tr>
+                                            </td>
+                                        </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
 
 
                                 </tbody>
@@ -221,13 +229,6 @@
 <script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-<script src="js/flot/jquery.flot.js"></script>
-<script src="js/flot/jquery.flot.resize.js"></script>
-<script src="js/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-<script src="js/flot-orderBars/js/jquery.flot.orderBars.js"></script>
-<script src="js/flot.curvedlines/curvedLines.js"></script>
-<script src="js/flot-orderBars/js/jquery.flot.orderBars.js"></script>
-<script src="js/flot-charts/bar-chart.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
 <script type="text/javascript" src="js/functions_dashboard.js"></script>
 
